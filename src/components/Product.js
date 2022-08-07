@@ -7,7 +7,7 @@ import { CardActionArea } from '@mui/material';
 import accounting from "accounting";
 export default function   Product() {
   return (
-    <Card sx={{ maxWidth: 345, margin:8}}>
+    <Card sx={{ maxWidth: 345, margin:15}}>
       <CardActionArea >
         <CardMedia  
 
