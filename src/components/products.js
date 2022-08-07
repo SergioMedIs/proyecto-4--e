@@ -4,6 +4,8 @@ import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 import Product from './Product';
+import products from './../product-data';
+
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
   ...theme.typography.body2,
@@ -12,35 +14,16 @@ const Item = styled(Paper)(({ theme }) => ({
   color: theme.palette.text.secondary,
 }));
 
-function Products() {
-  return (
-    <React.Fragment>
-      <Grid item xs={4}>
-      <Product/>
-      </Grid>
-      <Grid item xs={4}>
-        <Product/>
-      </Grid>
-      <Grid item xs={4}>
-      <Product/>
-      </Grid>
-    </React.Fragment>
-  );
-}
 
 export default function NestedGrid() {
   return (
     <Box marginLeft={45} sx={{ flexGrow: 1 }}>
-      <Grid container spacing={1}>
-        <Grid container item spacing={3}>
-        <Product/>
-        </Grid>
-        <Grid container item spacing={3}>
-        <Product/>
-        </Grid>
-        <Grid container item spacing={3}>
-        <Product/>
-        </Grid>
+      <Grid container spacing={3}>
+      {products.map((product) => (
+            <Grid item xs={12} sm={6} md={4} lg={3}>
+              <Product key={product.id} product={product} />
+            </Grid>
+          ))}
       </Grid>
     </Box>
   );
