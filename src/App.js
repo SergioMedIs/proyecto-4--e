@@ -1,7 +1,8 @@
 import Product from './components/Product';
 import Navbar from './components/Navbar';
 import './App.css';
-import Products from './components/products';
+import Products from './components/Products';
+import products from './product-data';
 
 function App() {
   return (

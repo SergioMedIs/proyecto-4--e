@@ -5,7 +5,37 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { CardActionArea } from '@mui/material';
 import accounting from "accounting";
-export default function   Product() {
+import { AddShoppingCart } from "@material-ui/icons";
+import { useStateValue } from "../StateProvider";
+import { actionTypes } from "../reducer";
+import { useState } from 'react';
+
+ 
+
+export default function Product({
+  product: { id, name, productType, image, price, rating, description },
+}) {
+ 
+  const [expanded, setExpanded] = useState(false);
+  const [{ basket }, dispatch] = useStateValue();
+  const handleExpandClick = () => {
+    setExpanded(!expanded);
+  };
+
+  const addToBasket = () => {
+    dispatch({
+      type: actionTypes.ADD_TO_BASKET,
+      item: {
+        id,
+        name,
+        productType,
+        image,
+        price,
+        rating,
+        description,
+      },
+    });
+  };
   return (
     <Card sx={{ maxWidth: 345, margin:15}}>
       <CardActionArea >
@@ -21,10 +51,10 @@ export default function   Product() {
             Gabinete001
         </Typography>
           <Typography gutterBottom variant="h5" component="div">
-          Gabinete AeroCool White MR12 
+           description
           </Typography>
           <Typography variant="body2" color="text.secondary">
-            {accounting.formatMoney(1500, "$")}
+            {accounting.formatMoney(price, "$")}
             <button  >comprar</button>
           </Typography>
         </CardContent>
