@@ -1,19 +1,13 @@
-import * as React from 'react';
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import Typography from '@mui/material/Typography';
-import { CardActionArea } from '@mui/material';
+import { useState } from "react";
+import Card from "@material-ui/core/Card";
+import CardMedia from "@material-ui/core/CardMedia";
+import CardContent from "@material-ui/core/CardContent";
+import Typography from "@material-ui/core/Typography";
+import  {useStateValue}  from "./StateProvider";
+import  {actionTypes } from "./reducer";
 import accounting from "accounting";
-import { AddShoppingCart } from "@material-ui/icons";
-import { useStateValue } from "../StateProvider";
-import { actionTypes } from "../reducer";
-import { useState } from 'react';
-
- 
-
 export default function Product({
-  product: { id, name, productType, image, price, rating, description },
+  product: { id, name, productType, image, price, description },
 }) {
  
   const [expanded, setExpanded] = useState(false);
@@ -31,7 +25,6 @@ export default function Product({
         productType,
         image,
         price,
-        rating,
         description,
       },
     });
@@ -44,14 +37,14 @@ export default function Product({
           component="img"
           height="210"
           weight='120'
-          image="https://www.cyberpuerta.mx/img/product/XL/CP-AEROCOOL-MINIFROST-G-WT-V1-1.jpg"
-          alt='125'/>
+          image={image}
+          alt='product-image'/>
         <CardContent>
         <Typography gutterBottom variant="h4" component="div">
-            Gabinete001
+            {name}
         </Typography>
           <Typography gutterBottom variant="h5" component="div">
-           description
+           {description}
           </Typography>
           <Typography variant="body2" color="text.secondary">
             {accounting.formatMoney(price, "$")}
